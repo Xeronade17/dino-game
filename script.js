@@ -1,80 +1,97 @@
-let dino=document.getElementById("dino");
-let obstacle=document.getElementById("obstacle");
+let dino = document.getElementById("dino");
 
-let x=80;
-let score=0;
-let jumping=false;
+let scoreBox = document.getElementById("score");
 
 
+let jumping = false;
+
+let score = 0;
+
+
+
+// LOMPAT
 
 function jump(){
 
-if(jumping)return;
+
+if(jumping){
+
+return;
+
+}
+
 
 jumping=true;
 
-let h=0;
+
+let height=0;
 
 
-let up=setInterval(()=>{
 
-h+=5;
-
-dino.style.bottom=(50+h)+"px";
+let naik=setInterval(()=>{
 
 
-if(h>=120){
-
-clearInterval(up);
+height +=5;
 
 
-let down=setInterval(()=>{
-
-h-=5;
-
-dino.style.bottom=(50+h)+"px";
+dino.style.bottom =
+(50+height)+"px";
 
 
-if(h<=0){
 
-clearInterval(down);
+if(height>=120){
+
+
+clearInterval(naik);
+
+
+
+let turun=setInterval(()=>{
+
+
+height-=5;
+
+
+dino.style.bottom =
+(50+height)+"px";
+
+
+
+if(height<=0){
+
+
+clearInterval(turun);
+
 jumping=false;
 
+
 }
+
 
 },20);
 
 
+
 }
+
 
 },20);
 
+
+
 }
 
 
 
-function moveLeft(){
-
-x-=20;
-dino.style.left=x+"px";
-
-}
-
-
-function moveRight(){
-
-x+=20;
-dino.style.left=x+"px";
-
-}
-
-
+// SCORE
 
 setInterval(()=>{
 
+
 score++;
 
-document.getElementById("score").innerHTML=
+
+scoreBox.innerHTML=
 "Score: "+score;
 
 
@@ -83,48 +100,31 @@ document.getElementById("score").innerHTML=
 
 
 
+// LAPTOP
 
-let cactusX=-50;
-
-
-function moveObstacle(){
-
-cactusX+=5;
-
-obstacle.style.right=cactusX+"px";
+document.addEventListener("keydown",function(e){
 
 
-if(cactusX>window.innerWidth){
-
-cactusX=-50;
-
-}
-
-}
+if(e.code==="Space"){
 
 
-setInterval(moveObstacle,30);
-
-
-
-document.addEventListener("keydown",(e)=>{
-
-
-if(e.code==="Space")
 jump();
 
 
-if(e.code==="ArrowLeft")
-moveLeft();
+}
 
 
-if(e.code==="ArrowRight")
-moveRight();
+});
 
 
-// Touch screen untuk telefon
-document.addEventListener("touchstart", function(){
 
-    jump();
+
+// PHONE TOUCH
+
+document.addEventListener("touchstart",function(){
+
+
+jump();
+
 
 });
