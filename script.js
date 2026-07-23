@@ -122,4 +122,9 @@ if(e.code==="ArrowRight")
 moveRight();
 
 
+// Touch screen untuk telefon
+document.addEventListener("touchstart", function(){
+
+    jump();
+
 });
