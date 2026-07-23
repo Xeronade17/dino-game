@@ -87,4 +87,7 @@ font-size:25px;
 padding:10px 20px;
 margin:5px;
 
+body{
+    touch-action: manipulation;
+    user-select: none;
 }
