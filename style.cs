@@ -1,93 +1,91 @@
-let dino = document.getElementById("dino");
-
-let position = 80;
-let jumping = false;
-let score = 0;
-
-
-function jump(){
-
-    if(jumping) return;
-
-    jumping = true;
-
-    let height = 0;
-
-    let up = setInterval(()=>{
-
-        height += 5;
-        dino.style.bottom = (50 + height) + "px";
-
-
-        if(height >= 100){
-
-            clearInterval(up);
-
-
-            let down = setInterval(()=>{
-
-                height -= 5;
-                dino.style.bottom = (50 + height) + "px";
-
-
-                if(height <= 0){
-
-                    clearInterval(down);
-                    jumping=false;
-
-                }
-
-            },20);
-
-        }
-
-    },20);
-
+body {
+    margin: 0;
+    background: black;
+    font-family: Arial;
+    overflow: hidden;
 }
 
 
-
-function moveLeft(){
-
-    position -= 20;
-    dino.style.left = position+"px";
-
+.game {
+    width: 100%;
+    height: 350px;
+    background: linear-gradient(#050816, #20284f);
+    position: relative;
+    overflow: hidden;
 }
 
 
-function moveRight(){
-
-    position += 20;
-    dino.style.left = position+"px";
-
+.moon {
+    width: 70px;
+    height: 70px;
+    background: #fff2b2;
+    border-radius: 50%;
+    position: absolute;
+    top: 30px;
+    right: 50px;
 }
 
 
-
-setInterval(()=>{
-
-    score++;
-    document.getElementById("score").innerHTML =
-    "Score: " + score;
-
-},500);
-
+.star {
+    width: 5px;
+    height: 5px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+}
 
 
-document.addEventListener("keydown",(e)=>{
+.star1 {
+    top: 80px;
+    left: 100px;
+}
 
-    if(e.code==="Space"){
-        jump();
-    }
+.star2 {
+    top: 120px;
+    left: 250px;
+}
 
 
-    if(e.code==="ArrowLeft"){
-        moveLeft();
-    }
+#score {
+    color: white;
+    padding: 20px;
+    font-size: 20px;
+}
 
 
-    if(e.code==="ArrowRight"){
-        moveRight();
-    }
+#dino {
+    position: absolute;
+    bottom: 50px;
+    left: 80px;
+    font-size: 50px;
+}
 
-});
+
+#ground {
+    position:absolute;
+    bottom:0;
+    width:100%;
+    height:50px;
+    background:#111;
+}
+
+
+#cactus {
+    position:absolute;
+    bottom:50px;
+    right:0;
+    font-size:45px;
+}
+
+
+.controls {
+    text-align:center;
+    margin-top:20px;
+}
+
+
+button {
+    font-size:20px;
+    padding:10px 20px;
+    margin:5px;
+}
